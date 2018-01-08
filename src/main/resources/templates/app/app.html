@@ -13,7 +13,7 @@
 <body class="skin-blue">
 <header class="header" th:include="include/header :: header"></header>
 <div class="wrapper row-offcanvas row-offcanvas-left">
-    <aside class="left-side sidebar-offcanvas"   th:include="include/left :: left"></aside>
+    <aside class="left-side sidebar-offcanvas" th:include="include/left :: left"></aside>
     <aside class="right-side">
         <section class="content-header">
             <h1>
@@ -22,7 +22,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
-                <li  class="active">应用管理</li>
+                <li class="active">应用管理</li>
             </ol>
         </section>
         <section class="content">
@@ -32,7 +32,6 @@
                         <h3 class="box-title">工程列表</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
-                        <!--<a th:href="'/app/'" class="btn btn-info btn-sm"></a>-->
                         <a th:href="'/app/save'" class="btn btn-primary btn-sm right">创建</a>
                     </div>
                     <div class="box-body table-responsive">
@@ -56,7 +55,10 @@
                                 <td th:text="${item.projectManagementPort}"></td>
                                 <td th:text="${item.projectDeployHost}"></td>
                                 <td th:text="${item.startSeq}"></td>
-                                <td><a th:href="'/app/'+${item.projectName}" class="btn btn-info btn-sm">Info</a></td>
+                                <td>
+                                    <a th:href="'/app/'+${item.projectName}" class="btn btn-info btn-sm">查看</a>
+                                    <a th:href="'/app/copy/'+${item.projectName}" class="btn btn-info btn-sm">复制</a>
+                                </td>
                             </tr>
                             </tbody>
                             <tfoot>

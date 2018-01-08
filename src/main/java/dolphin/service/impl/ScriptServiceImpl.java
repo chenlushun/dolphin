@@ -45,4 +45,8 @@ public class ScriptServiceImpl implements ScriptService {
         script.setParentId(preScript.getId());
         save(script);
     }
+
+    public Script findByName(String name) {
+        return scriptRepository.findByName(name);
+    }
 }

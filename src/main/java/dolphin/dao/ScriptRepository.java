@@ -22,4 +22,6 @@ public interface ScriptRepository {
     void expire(Long id);
 
     Script findHisTory(Long id);
+
+    Script findByName(String name);
 }

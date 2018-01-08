@@ -34,4 +34,5 @@ public interface ScriptService {
     void update(Script script);
 
 
+    Script findByName(String name);
 }

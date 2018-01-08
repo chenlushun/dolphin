@@ -43,4 +43,8 @@ public class ScriptRepositoryImpl implements ScriptRepository {
     public Script findHisTory(Long id) {
         return scriptMapper.findHisTory(id);
     }
+
+    public Script findByName(String name) {
+        return scriptMapper.findByName(name);
+    }
 }

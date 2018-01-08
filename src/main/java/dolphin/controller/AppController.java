@@ -24,7 +24,7 @@ public class AppController {
         return "app/app";
     }
 
-    @RequestMapping("{project_name}")
+    @RequestMapping("/{project_name}")
     public String get(@PathVariable("project_name") String projectName, ModelMap model) {
         model.put("app", appService.findByName(projectName));
         return "app/view";
@@ -33,6 +33,12 @@ public class AppController {
     @RequestMapping("/save")
     public String save() {
         return "app/save";
+    }
+
+    @RequestMapping("/copy/{project_name}")
+    public String copy(@PathVariable("project_name") String projectName, ModelMap model) {
+        model.put("app", appService.findByName(projectName));
+        return "app/copy_app";
     }
 
     @RequestMapping("/submit")

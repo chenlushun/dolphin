@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * @author Alex
  **/
@@ -37,11 +39,10 @@ public class ScriptController {
     }
 
 
-    @RequestMapping("/find")
+    @RequestMapping("/sh/{name}")
     @ResponseBody
-    public Object get(@RequestParam("id") Long id) {
-        Script script = scriptService.findById(id);
-
+    public Object get(@PathVariable("name") String name) {
+        Script script = scriptService.findByName(name);
         return script;
     }
 

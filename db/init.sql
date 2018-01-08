@@ -1,5 +1,7 @@
-DROP TABLE IF EXISTS site;
+-- 初始化SQL
 
+-- 站点SQL
+DROP TABLE IF EXISTS site;
 CREATE TABLE site
 (
     id BIGINT(20)  NOT NULL  AUTO_INCREMENT,
@@ -14,7 +16,7 @@ CREATE TABLE site
   DEFAULT CHARSET = utf8
   COMMENT = '站点表';
 
-
+-- 工程配置
 SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS project_info;
 CREATE TABLE project_info (
@@ -33,6 +35,7 @@ CREATE TABLE project_info (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+--脚本
 DROP TABLE IF EXISTS script;
 CREATE TABLE script
 (

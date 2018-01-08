@@ -32,4 +32,8 @@ public interface ScriptMapper {
 
     @Select("select * from script where id=#{id}")
     Script findHisTory(@Param("id") Long id);
+
+    @Select("select * from script where name=#{name} and status=2 limit 1")
+    @ResultMap("script")
+    Script findByName(@Param("name") String name);
 }

@@ -13,7 +13,7 @@ public interface SiteMapper {
     @Insert("INSERT  INTO site(name,url,create_at) VALUES (#{site.name},#{site.url},now())")
     void save(@Param("site") Site site);
 
-    @Update("UPDATE site SET is_delete=0 WHERE id=#{id}")
+    @Delete("delete from site WHERE id=#{id}")
     void delete(@Param("id") Long id);
 
     List<Site> findAll();
