@@ -1,0 +1,106 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>微信退款小工具</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="container container-fluid">
+    <h3>微信退款小工具</h3>
+    <div class="" style="    width: 38%;">
+
+        <div class="form-group">
+            <label>退款单号</label>
+            <input type="text" class="form-control" id="outRefundNo" placeholder="T171129100243939340"/>
+        </div>
+
+        <div class="form-group">
+            <label>支付单号</label>
+            <input type="text" class="form-control" id="tradeNo" placeholder="P171129150939886814"/>
+        </div>
+
+        <div class="form-group">
+            <label>总金额</label>
+            <input type="text" class="form-control" id="totalFee" placeholder="98.30"/>
+        </div>
+
+        <div class="form-group">
+            <label>退款金额</label>
+            <input type="text" class="form-control" id="refundFee" placeholder="90.30"/>
+        </div>
+
+        <div class="form-group">
+            <input type="button" id="refund" class="btn btn-default" value="提交退款"/>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    ;(function () {
+        $('#refund').on("click", function () {
+            var outRefundNo = $('#outRefundNo').val();
+            var tradeNo = $('#tradeNo').val();
+            var totalFee = $('#totalFee').val();
+            var refundFee = $('#refundFee').val();
+
+            if (!outRefundNo) {
+                alert("退款单号不能为空");
+                return;
+            }
+
+            if (!tradeNo) {
+                alert("支付单号不能为空");
+                return;
+            }
+
+            if (!totalFee) {
+                alert("总金额不能为空");
+                return;
+            }
+
+            if (!refundFee) {
+                alert("退款金额不能为空");
+                return;
+            }
+
+            var t = {
+                'outRefundNo': outRefundNo,
+                'tradeNo': tradeNo,
+                'totalFee': totalFee.toString(),
+                'refundFee': refundFee.toString()
+            }
+            console.log(t)
+            $.ajax({
+                type: "post",
+                url: "/refund",
+                dataType: "json",
+                data: t,
+                success: function (msg) {
+                    if (msg.result_code === 'FAIL') {
+                        alert(msg.err_code_des);
+                        return
+                    }
+                    if (msg.result_code === 'SUCCESS') {
+                        alert("退款成功");
+                    }
+                }
+            })
+        });
+    })();
+</script>
+</html>

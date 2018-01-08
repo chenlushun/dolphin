@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="dolphin.dao.mapper.AppMapper">
+    <resultMap id="app" type="dolphin.entity.App">
+        <result column="project_name" property="projectName"></result>
+        <result column="project_env" property="projectEnv"></result>
+        <result column="project_app_port" property="projectAppPort"></result>
+        <result column="project_management_port" property="projectManagementPort"></result>
+        <result column="project_logs_path" property="projectLogsPath"></result>
+        <result column="project_deploy_host" property="projectDeployHost"></result>
+        <result column="project_deploy_path" property="projectDeployPath"></result>
+        <result column="project_start_cmd" property="projectStartCmd"></result>
+        <result column="source_jar_path" property="sourceJarPath"></result>
+        <result column="source_jar_name" property="sourceJarName"></result>
+        <result column="start_seq" property="startSeq"></result>
+    </resultMap>
+
+    <insert id="save">
+        INSERT INTO project_info (project_name,
+         project_env,
+         project_app_port,
+         project_management_port,
+         project_logs_path,
+         project_deploy_host,
+         project_deploy_path,
+         project_start_cmd,
+         source_jar_path,
+         source_jar_name,
+         start_seq) VALUES (
+         #{projectName},
+         #{projectEnv},
+         #{projectAppPort},
+         #{projectManagementPort},
+         #{projectLogsPath},
+         #{projectDeployHost},
+         #{projectDeployPath},
+         #{projectStartCmd},
+         #{sourceJarPath},
+         #{sourceJarName},
+         #{startSeq})
+    </insert>
+
+    <update id="update">
+        update  project_info SET
+         project_env=#{projectEnv},
+         project_app_port=#{projectAppPort},
+         project_management_port=#{projectManagementPort},
+         project_logs_path=#{projectLogsPath},
+         project_deploy_host=#{projectDeployHost},
+         project_deploy_path=#{projectDeployPath},
+         project_start_cmd=#{projectStartCmd},
+         source_jar_path=#{sourceJarPath},
+         source_jar_name= #{sourceJarName},
+         start_seq=#{startSeq}
+         where project_name=#{projectName}
+    </update>
+</mapper>
